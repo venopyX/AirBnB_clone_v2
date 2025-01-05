@@ -1,9 +1,5 @@
 # The Console - HBNB
 
-<center>
-<h1>The Console - HBNB</h1>
-</center>
-
 This repository represents the initial phase of a student project aimed at creating a clone of the AirBnB website. This phase introduces a backend interface, also known as a console, to manage program data. Through console commands, users can create, modify, and delete objects, as well as manage file storage. The system employs JSON serialization and deserialization to ensure persistent storage across sessions.
 
 ---
@@ -14,17 +10,17 @@ This repository represents the initial phase of a student project aimed at creat
 
 | Tasks                          | Files                                                                                                                   | Description                                                                 |
 |--------------------------------|-------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| 0: Authors/README File         | [AUTHORS](https://github.com/justinmajetich/AirBnB_clone/blob/dev/AUTHORS)                                               | Project authors                                                              |
+| 0: Authors/README File         | [AUTHORS](https://github.com/venopyx/AirBnB_clone/blob/dev/AUTHORS)                                               | Project authors                                                              |
 | 1: Pep8                        | N/A                                                                                                                      | All code is PEP8 compliant                                                  |
-| 2: Unit Testing                | [/tests](https://github.com/justinmajetich/AirBnB_clone/tree/dev/tests)                                                  | All class-defining modules are unit tested                                  |
-| 3: Make BaseModel              | [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py)                     | Defines a parent class to be inherited by all model classes                |
-| 4: Update BaseModel w/ kwargs  | [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py)                     | Adds functionality to recreate a class instance from a dictionary          |
-| 5: Create FileStorage class    | [/models/engine/file_storage.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/engine/file_storage.py)   | Defines a class to manage a persistent file storage system                  |
-| 6: Console 0.0.1               | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py)                                         | Adds basic functionality to the console program, enabling quit, empty lines, and ^D handling |
-| 7: Console 0.1                 | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py)                                         | Updates the console with methods to create, destroy, show, and update stored data |
-| 8: Create User class           | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py) [/models/engine/file_storage.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/engine/file_storage.py) [/models/user.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/user.py) | Dynamically implements a user class                                        |
-| 9: Additional Classes          | [/models/user.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/user.py) [/models/place.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/place.py) [/models/city.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/city.py) [/models/amenity.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/amenity.py) [/models/state.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/state.py) [/models/review.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/review.py) | Dynamically implements additional classes                                   |
-| 10: Console 1.0                | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py) [/models/engine/file_storage.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/engine/file_storage.py) | Modifies the file storage system and console to function dynamically with updates to all classes                         |
+| 2: Unit Testing                | [/tests](https://github.com/venopyx/AirBnB_clone/tree/dev/tests)                                                  | All class-defining modules are unit tested                                  |
+| 3: Make BaseModel              | [/models/base_model.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/base_model.py)                     | Defines a parent class to be inherited by all model classes                |
+| 4: Update BaseModel w/ kwargs  | [/models/base_model.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/base_model.py)                     | Adds functionality to recreate a class instance from a dictionary          |
+| 5: Create FileStorage class    | [/models/engine/file_storage.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/engine/file_storage.py)   | Defines a class to manage a persistent file storage system                  |
+| 6: Console 0.0.1               | [console.py](https://github.com/venopyx/AirBnB_clone/blob/dev/console.py)                                         | Adds basic functionality to the console program, enabling quit, empty lines, and ^D handling |
+| 7: Console 0.1                 | [console.py](https://github.com/venopyx/AirBnB_clone/blob/dev/console.py)                                         | Updates the console with methods to create, destroy, show, and update stored data |
+| 8: Create User class           | [console.py](https://github.com/venopyx/AirBnB_clone/blob/dev/console.py) [/models/engine/file_storage.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/engine/file_storage.py) [/models/user.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/user.py) | Dynamically implements a user class                                        |
+| 9: Additional Classes          | [/models/user.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/user.py) [/models/place.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/place.py) [/models/city.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/city.py) [/models/amenity.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/amenity.py) [/models/state.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/state.py) [/models/review.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/review.py) | Dynamically implements additional classes                                   |
+| 10: Console 1.0                | [console.py](https://github.com/venopyx/AirBnB_clone/blob/dev/console.py) [/models/engine/file_storage.py](https://github.com/venopyx/AirBnB_clone/blob/dev/models/engine/file_storage.py) | Modifies the file storage system and console to function dynamically with updates to all classes                         |
 
 <br>
 <br>
