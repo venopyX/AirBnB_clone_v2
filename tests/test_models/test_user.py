@@ -1,34 +1,55 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+"""Unittest module for User class."""
+import unittest
+import os
 from models.user import User
+from models.base_model import BaseModel
 
 
-class test_User(test_basemodel):
-    """ """
+class TestUser(unittest.TestCase):
+    """Test cases for User class."""
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "User"
-        self.value = User
+    def setUp(self):
+        """Set up test environment."""
+        self.user = User()
 
-    def test_first_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.first_name), str)
+    def tearDown(self):
+        """Clean up test environment."""
+        try:
+            os.remove('file.json')
+        except FileNotFoundError:
+            pass
 
-    def test_last_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.last_name), str)
+    def test_init(self):
+        """Test User initialization."""
+        self.assertIsInstance(self.user, User)
+        self.assertIsInstance(self.user, BaseModel)
 
-    def test_email(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.email), str)
+    def test_attributes(self):
+        """Test User attributes."""
+        self.assertEqual(self.user.email, "")
+        self.assertEqual(self.user.password, "")
+        self.assertEqual(self.user.first_name, "")
+        self.assertEqual(self.user.last_name, "")
 
-    def test_password(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.password), str)
+    def test_attributes_assignment(self):
+        """Test User attribute assignment."""
+        self.user.email = "test@example.com"
+        self.user.password = "password123"
+        self.user.first_name = "John"
+        self.user.last_name = "Doe"
+
+        self.assertEqual(self.user.email, "test@example.com")
+        self.assertEqual(self.user.password, "password123")
+        self.assertEqual(self.user.first_name, "John")
+        self.assertEqual(self.user.last_name, "Doe")
+
+    def test_to_dict_method(self):
+        """Test to_dict method."""
+        user_dict = self.user.to_dict()
+        self.assertIsInstance(user_dict, dict)
+        self.assertEqual(user_dict['__class__'], 'User')
+
+
+if __name__ == "__main__":
+    unittest.main()

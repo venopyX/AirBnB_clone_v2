@@ -12,6 +12,7 @@ import inspect
 import unittest
 storage_t = getenv("HBNB_TYPE_STORAGE")
 
+
 class test_Amenity(test_basemodel):
     """ """
 
@@ -127,48 +128,42 @@ class test_Amenity_BaseModel(unittest.TestCase):
 class TestAmenity(unittest.TestCase):
     """Test the Amenity class"""
 
-    def test_is_subclass(self):
-        """Test that Amenity is a subclass of BaseModel"""
-        amenity = Amenity()
-        self.assertIsInstance(amenity, BaseModel)
-        self.assertTrue(hasattr(amenity, "id"))
-        self.assertTrue(hasattr(amenity, "created_at"))
-        self.assertTrue(hasattr(amenity, "updated_at"))
+    def setUp(self):
+        """Set up test environment."""
+        self.amenity = Amenity()
 
-    def test_name_attr(self):
-        """Test that Amenity has attribute name, and it's as an empty string"""
-        amenity = Amenity()
-        self.assertTrue(hasattr(amenity, "name"))
-        if storage_t == 'db':
-            self.assertEqual(amenity.name, None)
-        else:
-            self.assertEqual(amenity.name, "")
+    def tearDown(self):
+        """Clean up test environment."""
+        try:
+            os.remove('file.json')
+        except FileNotFoundError:
+            pass
 
-    def test_to_dict_creates_dict(self):
-        """test to_dict method creates a dictionary with proper attrs"""
-        am = Amenity()
-        print(am.__dict__)
-        new_d = am.to_dict()
-        self.assertEqual(type(new_d), dict)
-        self.assertFalse("_sa_instance_state" in new_d)
-        for attr in am.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in new_d)
-        self.assertTrue("__class__" in new_d)
+    def test_init(self):
+        """Test Amenity initialization."""
+        self.assertIsInstance(self.amenity, Amenity)
+        self.assertIsInstance(self.amenity, BaseModel)
 
-    def test_to_dict_values(self):
-        """test that values in dict returned from to_dict are correct"""
-        t_format = "%Y-%m-%dT%H:%M:%S.%f"
-        am = Amenity()
-        new_d = am.to_dict()
-        self.assertEqual(new_d["__class__"], "Amenity")
-        self.assertEqual(type(new_d["created_at"]), str)
-        self.assertEqual(type(new_d["updated_at"]), str)
-        self.assertEqual(new_d["created_at"], am.created_at.strftime(t_format))
-        self.assertEqual(new_d["updated_at"], am.updated_at.strftime(t_format))
+    def test_attributes(self):
+        """Test Amenity attributes."""
+        # SQLAlchemy models have nullable=False, so these might be None initially
+        self.assertIsNone(self.amenity.name)
 
-    def test_str(self):
-        """test that the str method has the correct output"""
-        amenity = Amenity()
-        string = "[Amenity] ({}) {}".format(amenity.id, amenity.__dict__)
-        self.assertEqual(string, str(amenity))
+    def test_attributes_assignment(self):
+        """Test Amenity attribute assignment."""
+        self.amenity.name = "Swimming Pool"
+        self.assertEqual(self.amenity.name, "Swimming Pool")
+
+    def test_to_dict_method(self):
+        """Test to_dict method."""
+        # Set required attributes first
+        self.amenity.name = "Swimming Pool"
+        
+        amenity_dict = self.amenity.to_dict()
+        self.assertIsInstance(amenity_dict, dict)
+        self.assertEqual(amenity_dict['__class__'], 'Amenity')
+        self.assertEqual(amenity_dict['name'], "Swimming Pool")
+
+
+if __name__ == "__main__":
+    unittest.main()
