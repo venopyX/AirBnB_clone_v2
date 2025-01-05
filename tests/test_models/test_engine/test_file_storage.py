@@ -31,9 +31,10 @@ class test_fileStorage(unittest.TestCase):
     def test_new(self):
         """ New object is correctly added to __objects """
         new = BaseModel()
-        for obj in storage.all().values():
-            temp = obj
-        self.assertTrue(temp is obj)
+        storage.new(new)
+        key = f"{new.__class__.__name__}.{new.id}"
+        self.assertTrue(key in storage.all())
+        self.assertEqual(storage.all()[key], new)
 
     def test_all(self):
         """ __objects is properly returned """
@@ -52,6 +53,7 @@ class test_fileStorage(unittest.TestCase):
         thing = new.to_dict()
         new.save()
         new2 = BaseModel(**thing)
+        self.assertTrue(os.path.exists('file.json'))
         self.assertNotEqual(os.path.getsize('file.json'), 0)
 
     def test_save(self):
@@ -65,8 +67,9 @@ class test_fileStorage(unittest.TestCase):
         new = BaseModel()
         storage.save()
         storage.reload()
-        for obj in storage.all().values():
-            loaded = obj
+        key = f"{new.__class__.__name__}.{new.id}"
+        self.assertTrue(key in storage.all())
+        loaded = storage.all()[key]
         self.assertEqual(new.to_dict()['id'], loaded.to_dict()['id'])
 
     def test_reload_empty(self):
@@ -97,13 +100,14 @@ class test_fileStorage(unittest.TestCase):
     def test_key_format(self):
         """ Key is properly formatted """
         new = BaseModel()
-        _id = new.to_dict()['id']
-        for key in storage.all().keys():
-            temp = key
-        self.assertEqual(temp, 'BaseModel' + '.' + _id)
+        key = f"{new.__class__.__name__}.{new.id}"
+        self.assertTrue(key in storage.all())
 
     def test_storage_var_created(self):
         """ FileStorage object storage created """
         from models.engine.file_storage import FileStorage
-        print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+
+if __name__ == '__main__':
+    unittest.main()
